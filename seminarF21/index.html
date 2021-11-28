@@ -54,7 +54,7 @@
 	                <li class="fragment">Persistent Homology</li>
 	                <li class="fragment">Poisson Point Processes</li>
 	                <li class="fragment">Nasrin et al. Bayesian Classification of Brain States</li>
-	                <li class="fragment">Learn more about TDA!</li>
+	                <li class="fragment">Learn more about TDA</li>
 	            </ul>
 	        </section>
                 <!-- Intro to TDA -->
@@ -67,8 +67,8 @@
                             </div>
                             <div class="column right">
                                 <ul>
-	                            <li class="fragment">A subfield of algebraic topology that has found applications in many disciplines outside math</li>
-	                            <li class="fragment">Based on the idea that data are sampled from an underlying manifold so we can study some algebraic invariants of that space</li>
+	                            <li class="fragment">A subfield of algebraic topology that has found applications in many disciplines outside math.</li>
+	                            <li class="fragment">Based on the idea that data are sampled from an underlying manifold so we can study some algebraic invariants of that space.</li>
 	                            <li class="fragment">Important algebraic invariant class are homology groups, which arise from combinatorial representations of the manifold.</li>
 	                        </ul>
                             </div>
@@ -99,7 +99,7 @@
                         <iframe data-src="https://www.wolframcloud.com/obj/0087958a-7fce-4f4b-a7f9-fcf45713329a"
                                 data-preload width="700px" height="500px"></iframe>
 	            </section>
-                    <section data-background-image="img/filt.gif" data-background-opacity=".4">
+                    <section data-background-image="img/filt.gif" data-background-opacity=".3">
                         <h4>Filtration</h4>
                         <p>As we increase the radii of the balls, we see that holes appear and disappear. <span class="fragment">Also we note that each prior simplicial complex corresponding to smaller radii is a subcomplex of the new simplicial complex corresponding to the larger radii.</span></p>
                         <p class="fragment">A sequence of simplicial complexes linked by inclusion maps is called a <span class="fragment highlight-red">filtration</span>.</p>
@@ -108,40 +108,103 @@
                     <section>
                         <h4>Do we always convert data to a point cloud then?</h4>
                         <ul>
-                            <li class="fragment">No, there are different filtrations that can be appropriate for other types of data</li>
-                            <li class="fragment">For example, a nested family of sublevel-sets $f^{-1}((-\infty, \alpha])$ for $\alpha = -\infty$ to $\infty$</li>
+                            <li class="fragment">No, there are different filtrations that can be appropriate for other types of data.</li>
+                            <li class="fragment">For example, a nested family of sublevel-sets $f^{-1}((-\infty, \alpha])$ for $\alpha = -\infty$ to $\infty$.</li>
                             <li class="fragment">So we can compute the birth and death connected components and/or holes for filtrations on our data set...</li>
                         </ul>
                     </section>
                 </section>
                 <!-- Persistent Homology -->
                 <section>
-                    <section data-background-image="img/ph.gif" data-background-opacity=".4">
+                    <section data-transition="fade-in fade-out" data-background-image="img/ph.gif" data-background-opacity=".4">
 	                <h4>Persistent Homology and Diagrams</h4>
                         <small>For filtered complexes we have that all components are born at the same time. As a younger component meets an older component, the younger one is marked as dead and the two components merge. Note below we also record the birth and death of a 1-d homology group:
                            <br> <img src="img/filtcomp.gif" width="600px"></small>
 	            </section>
+                    <section data-transition="fade-in fade-out">
+                        <h4>Persistent Homology and Diagrams</h4>
+                        <small>For a single variate function, such as the signal below, we can track and encode the evolution of connected components (0-d homology) of its sublevel-sets:
+                            <br> <img src="img/signalpd.gif" width="600px"></small>
+                    </section>
+                    <section data-transition="fade-in">
+                        <h4>Persistent Homology and Diagrams</h4>
+                        <small>Note that we track the components for each $f^{-1}((-\infty, \alpha])$ where  $\alpha \in (-\infty, \infty)$. Below we see that components are born at local minima and die at local maxima:
+                            <br> <img src="img/funfilter.png" width="600px"></small>
+                    </section>
                 </section>
                 <!-- Poisson Processes -->
                 <section>
-                    <section data-background-image="" data-background-opacity=".4">
-	                <h4>Topological Data Analysis (TDA) and Bayesian Classification of Brain States</h4>
-	                <small>by Fabiana Ferracina (WSU Vancouver)</small>
+                    <section data-background-image="img/poisson.gif" data-background-opacity=".3">
+	                <h4>Poisson Point Process (PPP)</h4>
+                        <p>We will model persistence diagrams as a PPPs. We sample $n$ random points and spatially distribute them. The points are birth and persistence pairs, that is $x_i= (b, p) = (b, d - b), \ i=1,\dots, n$. </p>
+                        <p class="fragment">The point processes are characterized by the intensity $\lambda(x_i)$, that is the density of the expected number of points at $x_i$.</p>
 	            </section>
+                    <section data-background-image="img/line.gif" data-background-opacity=".3">
+                        <h4>Marked Poisson Point Process</h4>
+                        <p class="fragment fade-in"><small>Def.1) Let $\mathbb{X}$ and $\mathbb{M}$ be Polish spaces. Suppose $\ell : \mathbb{X} \times \mathbb{M} \rightarrow \mathbb{R}^+ \cup \{0\}$ is a function satisfying:
+                            <ol>
+                                <li class="fragment">$\forall \mathbf{x} \in \mathbb{X}, \ \ell(\mathbf{x}, \cdot)$ is a probability measure on $\mathbb{M}$, and</li>
+                                <li class="fragment">$\forall B \in \mathcal{M}$ (the Borel $\sigma$-algebra of $\mathbb{M}$), $\ell(\cdot, B)$ is a measureable function on $\mathbb{X}$.</li>
+                            </ol></small></p>
+                            <p class="fragment fade-in"><small>Then $\ell$ is a stochastic kernel from $\mathbb{X}$ to $\mathbb{M}$.</small></p>
+                            <br>
+                            <p class="fragment fade-in"><small>Def.2) Let $\Psi_M$ be a finite point process on $\mathbb{X} \times \mathbb{M}$ such that:
+                                <ol>
+                                    <li class="fragment">$\Psi = (\{p_n\}, \{\mathbb{P}_n(\cdot)\})$ is a PPP on $\mathbb{X}$, and</li>
+                                    <li class="fragment">for a realization $(\mathbf{x}, \mathbf{m}) \in \mathbb{X} \times \mathbb{M}$, the marks $m_i \in \mathbf{m}$ for each $x_i \in \mathbf{x}$ are independently drawn from a given stochatis kernel $\ell(\cdot, x_i)$.</li>
+                                </ol></small></p>
+                            <p class="fragment fade-in"><small>Then $\Psi_M$ is a marked Poisson point process.</small></p>
+                    </section>
+                    <section>
+                        <h4>Example</h4>
+                    </section>
                 </section>
                 <!-- Nasrin et al -->
                 <section>
                     <section data-background-image="img/brain.gif" data-background-opacity=".4">
-	                <h4>Topological Data Analysis (TDA) and Bayesian Classification of Brain States</h4>
-	                <small>by Fabiana Ferracina (WSU Vancouver)</small>
+	                <h4>This is your brain right now...</h4>
+                        <h4 class="fragment">...ok, now let's talk about the paper...</h4>
+                        <h4 class="fragment"><a href="https://fabstat.github.io/tda/seminarF21/sources/nasrin2019bayesian.pdf" target="_blank">(link to paper)</a></h4>
 	            </section>
+                    <section data-background-image="img/brain.gif" data-background-opacity=".4">
+                        <h4>Persistent Homology for Noisy Signals</h4>
+                        <small>Consider a signal as a bounded and continuous function of time $f(t)$. For every connected component that arises from a sublevel set filtration we plot the points $(b, d)$. We apply a linear combination $(b, p) = (b, d - b)$ and define the set $\mathbb{X} := \{(b, p) \in \mathbb{R}^2 | b, p \geq 0\}$.
+                            <br> <img src="img/fig1.png" width="600px"></small>
+                    </section>
+                    <section data-background-image="img/brain.gif" data-background-opacity=".4">
+                        <h4>The Bayesian Model</h4>
+                        <small><b>Prior</b> knowledge is modeled by a persistence diagram $D_X$ generated by a PPP $\mathcal{D}_X$ with intensity $\lambda_{\mathcal{D}_X}$. If $x$ is in $D_X$ but not observed in the data, we assign this event the probability $1-\alpha(x)$. <b>Data</b> is encoded into the observed PDs $D_Y$, and points $y_i \in D_Y$ are linked to points in $D_X$ via the MPPP. A further PPP $\mathcal{D}_{Y_U}$ with intensity $\lambda_{\mathcal{D}_{Y_U}}$  must be defined for data not associated with points in the prior.
+                            <br> <img src="img/fig2.png" width="600px"></small>
+                    </section>
+                    <section data-background-image="img/brain.gif" data-background-opacity=".4">
+                        <h4>Persistent Homology and Diagrams</h4>
+                        <small>For filtered complexes we have that all components are born at the same time. As a younger component meets an older component, the younger one is marked as dead and the two components merge. Note below we also record the birth and death of a 1-d homology group:
+                            <br> <img src="img/fig3.png" width="600px"></small>
+                    </section>
+                    <section data-background-image="img/brain.gif" data-background-opacity=".4">
+                        <h4>Persistent Homology and Diagrams</h4>
+                        <small>For filtered complexes we have that all components are born at the same time. As a younger component meets an older component, the younger one is marked as dead and the two components merge. Note below we also record the birth and death of a 1-d homology group:
+                            <br> <img src="img/fig4.png" width="600px"></small>
+                    </section>
+                </section>
+                <section>
+
                 </section>
                 <!-- Learn More -->
                 <section>
-                    <section data-background-image="img/dnn.gif" data-background-opacity=".3">
-	                <h4>Topological Data Analysis (TDA) and Bayesian Classification of Brain States</h4>
-	                <small>by Fabiana Ferracina (WSU Vancouver)</small>
+                    <section data-transition="fade-in fade-out" data-background-image="" data-background-opacity=".3">
+	                <h4>TDA is a useful and formidable tool for statisticians!</h4>
+                        <p><i>Learn more!</i></p>
+                        <ul>
+                            <li><a href="https://fabstat.github.io/tda/seminarF21/sources/maroulas2020bayesian.pdf" target="_blank">A Bayesian Framework for Persistent Homology by Maroulas et al.</a></li>
+                            <li><a href="https://fabstat.github.io/tda/seminarF21/sources/oballe2021bayesian.pdf" target="_blank">Bayesian Topological Signal Processing by Oballe  et al.</a></li>
+                            <li><a href="https://iuricichf.github.io/my_site/papers/stag2016.pdf" target="_blank">Persistent Homology: a step-by-step introduction for newcomers by Fugacci et al.</a></li>
+                            <li><a href="https://people.clas.ufl.edu/peterbubenik/intro-to-tda/" target="_blank">Introduction to TDA: Sources by Peter Bubenik</a></li>
+                        </ul>
 	            </section>
+                    <section data-transition="fade-in" data-background-image="img/brainwave.gif" data-background-opacity=".4">
+                        <h3>Questions, comments, brain waves?</h3>
+                    </section>
                 </section>
                 <!-- *********************** END *************************** -->
             </div>
