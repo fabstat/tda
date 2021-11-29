@@ -119,14 +119,14 @@
                     <section data-transition="fade-in fade-out" data-background-image="img/ph.gif" data-background-opacity=".4">
 	                <h4>Persistent Homology and Diagrams</h4>
                         <small>For filtered complexes we have that all components are born at the same time. As a younger component meets an older component, the younger one is marked as dead and the two components merge. Note below we also record the birth and death of a 1-d homology group:
-                           <br> <img src="img/filtcomp.gif" width="600px"></small>
+                            <br> <img src="img/filtcomp.gif" width="600px"></small>
 	            </section>
                     <section data-transition="fade-in fade-out">
                         <h4>Persistent Homology and Diagrams</h4>
                         <small>For a single variate function, such as the signal below, we can track and encode the evolution of connected components (0-d homology) of its sublevel-sets:
                             <br> <img src="img/signalpd.gif" width="600px"></small>
                     </section>
-                    <section data-transition="fade-in">
+                    <section data-transition="fade-in" data-background-image="img/topo.jpeg" data-background-opacity=".4">
                         <h4>Persistent Homology and Diagrams</h4>
                         <small>Note that we track the components for each $f^{-1}((-\infty, \alpha])$ where  $\alpha \in (-\infty, \infty)$. Below we see that components are born at local minima and die at local maxima:
                             <br> <img src="img/funfilter.png" width="600px"></small>
@@ -146,49 +146,87 @@
                                 <li class="fragment">$\forall \mathbf{x} \in \mathbb{X}, \ \ell(\mathbf{x}, \cdot)$ is a probability measure on $\mathbb{M}$, and</li>
                                 <li class="fragment">$\forall B \in \mathcal{M}$ (the Borel $\sigma$-algebra of $\mathbb{M}$), $\ell(\cdot, B)$ is a measureable function on $\mathbb{X}$.</li>
                             </ol></small></p>
-                            <p class="fragment fade-in"><small>Then $\ell$ is a stochastic kernel from $\mathbb{X}$ to $\mathbb{M}$.</small></p>
-                            <br>
-                            <p class="fragment fade-in"><small>Def.2) Let $\Psi_M$ be a finite point process on $\mathbb{X} \times \mathbb{M}$ such that:
-                                <ol>
-                                    <li class="fragment">$\Psi = (\{p_n\}, \{\mathbb{P}_n(\cdot)\})$ is a PPP on $\mathbb{X}$, and</li>
-                                    <li class="fragment">for a realization $(\mathbf{x}, \mathbf{m}) \in \mathbb{X} \times \mathbb{M}$, the marks $m_i \in \mathbf{m}$ for each $x_i \in \mathbf{x}$ are independently drawn from a given stochatis kernel $\ell(\cdot, x_i)$.</li>
-                                </ol></small></p>
-                            <p class="fragment fade-in"><small>Then $\Psi_M$ is a marked Poisson point process.</small></p>
+                        <p class="fragment fade-in"><small>Then $\ell$ is a stochastic kernel from $\mathbb{X}$ to $\mathbb{M}$.</small></p>
+                        <br>
+                        <p class="fragment fade-in"><small>Def.2) Let $\Psi_M$ be a finite point process on $\mathbb{X} \times \mathbb{M}$ such that:
+                            <ol>
+                                <li class="fragment">$\Psi = (\{p_n\}, \{\mathbb{P}_n(\cdot)\})$ is a PPP on $\mathbb{X}$, and</li>
+                                <li class="fragment">for a realization $(\mathbf{x}, \mathbf{m}) \in \mathbb{X} \times \mathbb{M}$, the marks $m_i \in \mathbf{m}$ for each $x_i \in \mathbf{x}$ are independently drawn from a given stochatis kernel $\ell(\cdot, x_i)$.</li>
+                            </ol></small></p>
+                        <p class="fragment fade-in"><small>Then $\Psi_M$ is a marked Poisson point process.</small></p>
                     </section>
                     <section>
-                        <h4>Example</h4>
+                        <h4>Simple Example</h4>
+                        <ul>
+                            <li class="fragment">Generate homogeneous Poisson point process with $\lambda(\mathbf{x}) = 1000$ on $[0,1]^2$.</li>
+                            <li class="fragment">Generate $m_i \overset{iid}{\sim}Exp(1)$ at each $\mathbf{x}_i$.</li>
+                            <li class="fragment">The marked Poisson point process $\{(\mathbf{x}_i, m_i)\}$ is derived.</li>
+                        </ul>
+                        <img class="fragment" src="img/mppp.png" width="350px">
                     </section>
                 </section>
-                <!-- Nasrin et al -->
+                <!-- Nasrin et al set up-->
                 <section>
                     <section data-background-image="img/brain.gif" data-background-opacity=".4">
 	                <h4>This is your brain right now...</h4>
                         <h4 class="fragment">...ok, now let's talk about the paper...</h4>
                         <h4 class="fragment"><a href="https://fabstat.github.io/tda/seminarF21/sources/nasrin2019bayesian.pdf" target="_blank">(link to paper)</a></h4>
 	            </section>
-                    <section data-background-image="img/brain.gif" data-background-opacity=".4">
+                    <section data-background-image="" data-background-opacity=".4">
                         <h4>Persistent Homology for Noisy Signals</h4>
                         <small>Consider a signal as a bounded and continuous function of time $f(t)$. For every connected component that arises from a sublevel set filtration we plot the points $(b, d)$. We apply a linear combination $(b, p) = (b, d - b)$ and define the set $\mathbb{X} := \{(b, p) \in \mathbb{R}^2 | b, p \geq 0\}$.
                             <br> <img src="img/fig1.png" width="600px"></small>
                     </section>
-                    <section data-background-image="img/brain.gif" data-background-opacity=".4">
+                    <section data-background-image="" data-background-opacity=".4">
                         <h4>The Bayesian Model</h4>
                         <small><b>Prior</b> knowledge is modeled by a persistence diagram $D_X$ generated by a PPP $\mathcal{D}_X$ with intensity $\lambda_{\mathcal{D}_X}$. If $x$ is in $D_X$ but not observed in the data, we assign this event the probability $1-\alpha(x)$. <b>Data</b> is encoded into the observed PDs $D_Y$, and points $y_i \in D_Y$ are linked to points in $D_X$ via the MPPP. A further PPP $\mathcal{D}_{Y_U}$ with intensity $\lambda_{\mathcal{D}_{Y_U}}$  must be defined for data not associated with points in the prior.
                             <br> <img src="img/fig2.png" width="600px"></small>
                     </section>
-                    <section data-background-image="img/brain.gif" data-background-opacity=".4">
-                        <h4>Persistent Homology and Diagrams</h4>
-                        <small>For filtered complexes we have that all components are born at the same time. As a younger component meets an older component, the younger one is marked as dead and the two components merge. Note below we also record the birth and death of a 1-d homology group:
-                            <br> <img src="img/fig3.png" width="600px"></small>
-                    </section>
-                    <section data-background-image="img/brain.gif" data-background-opacity=".4">
-                        <h4>Persistent Homology and Diagrams</h4>
-                        <small>For filtered complexes we have that all components are born at the same time. As a younger component meets an older component, the younger one is marked as dead and the two components merge. Note below we also record the birth and death of a 1-d homology group:
-                            <br> <img src="img/fig4.png" width="600px"></small>
+                    <section data-background-image="img/bayes.jpeg" data-background-opacity=".2">
+                        <h4>The Posterior</h4>
+                        <p>The first term is for features of prior that may not be observed and the second one is for features that may. Note the normalizing constant, it includes the intensity of features not associated with the prior.
+                            <br> <img src="img/post.png" width="600px"></p>
                     </section>
                 </section>
+                <!-- Nasrin et al classification -->
                 <section>
-
+                    <section data-transition="fade-in fade-out" data-background-image="" data-background-opacity=".2">
+                        <h4>Bayesian Classification</h4>
+                        <p>For training sets $Q_{Y^k} := D_{Y^k_{1:n}}, \ k=1, \dots, K$, we obtain the posterior density of $D|Q_{Y^k}$: $$p_{\mathcal{D}|\mathcal{D}_{Y^k}}(D|Q_{Y^k}) = \frac{e^{-\lambda}}{|D|!}\prod\limits_{d \in D} \lambda_{D|Q_{Y^k}}(d),$$ where $\lambda = \int \lambda_{D|Q_{Y^k}}(u)du$, that is the expected number of points in $D|Q_{Y^k}$.</p>
+                    </section>
+                    <section data-transition="fade-in fade-out" data-background-image="img/vote.gif" data-background-opacity=".1">
+                        <h4>Bayesian Classification</h4>
+                        <p>Analogously, we obtain posterior probability densities for other training sets and define the Bayes factor as$$BF^{i,j}(Q_{Y^i}, Q_{Y^j}) = \frac{p_{\mathcal{D}|\mathcal{D}_{Y^i}}(D|Q_{Y^i})}{p_{\mathcal{D}|\mathcal{D}_{Y^j}}(D|Q_{Y^j})},$$ for ever pair $1 \leq i, j \leq K$. If $BF^{i,j}(Q_{Y^i}, Q_{Y^j}) > c$, then one vote is assigned to class $Q_{Y^i}$, or otherwise if it is less than $c$. The class for $D$ is the one that wins by majority vote.</p>
+                    </section>
+                    <section data-transition="fade-in fade-out">
+                        <h4>Conjugate Family of Priors</h4>
+                        <p>For a closed form of the posterior, Gaussian mixtures are chosen as a family of priors. The prior intensity density is $\lambda_{\mathcal{D}_X}(x) = \sum_{j=1}^Nc_j^{\mathcal{D}_X}\mathcal{N}^*(x; \mu_j^{\mathcal{D}_X}, \sigma_j^{\mathcal{D}_X}I)$ where $N$ is the number of mixture components and $\mathcal{N}^*$ is the restricted Gaussian on the set of birth and persistance points. $\lambda_{\mathcal{D}_{Y_U}}(y)$ is similarly defined.</p>
+                    </section>
+                    <section data-transition="fade-in fade-out">
+                        <h4>Conjugate Family of Priors</h4>
+                        <p>The likelihood density is also Gaussian: $\ell(y|x) = \mathcal{N}^*(y; x, \sigma^{\mathcal{D}_{Y_O}}I)$, and we let $\alpha(x) = \alpha$. Thus we obtain the Gaussian mixture for the posterior intensity: $$\lambda_{\mathcal{D}_X|D_{Y_{1:n}}}(x) = (1-\alpha)\lambda_{\mathcal{D}_X}(x)$$ $$+ \frac{\alpha}{n}\sum\limits_{i=1}^n\sum\limits_{y \in \mathcal{D}_Y}\sum\limits_{j=1}^NC_j^{x|y}\mathcal{N}^*(x; \mu_j^{x|y}, \sigma_j^{x|y}I),$$ where $C_j^{x|y}$, $\mu_j^{x|y}$ and $\sigma_j^{x|y}$ are the weights mean and variance of the posterior intensity respectively.</p>
+                    </section>
+                </section>
+                <!-- Nasrin et al results -->
+                <section>
+                    <section data-background-image="img/waves.jpeg" data-background-opacity=".5"></section>
+                    <section data-background-image="img/waves.jpeg" data-background-opacity=".2">
+                        <h4>EEG Datasets</h4>
+                        <ul>
+                            <li class="fragment">US Army Aberdeen Proving Ground simulated noisy EEG signals based on different activities.</li>
+                            <li class="fragment">Results for alpha and beta bands are presented, where the authors describe alpha as intense activity and beta as more focused activity (maybe they meant beta and gamma respectively).</li>
+                        </ul>
+                    </section>
+                    <section data-background-image="img/waves.jpeg" data-background-opacity=".2">
+                        <h4>EEG Datasets</h4>
+                        <small>Posterior intensity estimation of a noisy alpha band and a noisy beta band. Authors employed an uninformative prior of the form $\mathcal{N}((3, 3), 20I)$. Intensities were scaled by dividing them  by their corresponding maxima.
+                            <br> <img src="img/fig3.png" width="500px"></small>
+                    </section>
+                    <section data-background-image="img/waves.jpeg" data-background-opacity=".2">
+                        <h4>EEG Datasets</h4>
+                        <small>The math: everything so far. The software package: <b><a href="https://github.com/maroulaslab/BayesTDA">Bayes TDA</a></b>. Other details: 10-fold cross validation for estimating the accuracy, each class was partitioned into 10 sets: 9 training and 1 test. Every partition was tested once. The average was taken. The results were compared to other methods:
+                            <br> <img src="img/fig4.png" width="500px"></small>
+                    </section>
                 </section>
                 <!-- Learn More -->
                 <section>
