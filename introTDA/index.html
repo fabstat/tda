@@ -1,0 +1,166 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+        <title>Introduction to Topogical Data Analysis</title>
+
+        <link rel="stylesheet" href="css/reveal.css">
+        <link rel="stylesheet" href="css/theme/blood.css">
+
+        <!-- Theme used for syntax highlighting of code -->
+        <link rel="stylesheet" href="lib/css/zenburn.css">
+
+        <!-- Printing and PDF exports -->
+        <script>
+         var link = document.createElement( 'link' );
+         link.rel = 'stylesheet';
+         link.type = 'text/css';
+         link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+         document.getElementsByTagName( 'head' )[0].appendChild( link );
+        </script>
+
+        <style>
+         .column {
+             float: left;
+         }
+
+         .left {
+             width: 25%;
+         }
+
+         .right {
+             width: 75%;
+         }
+        </style>
+
+    </head>
+    <body>
+        <div class="reveal">
+            <div class="slides">
+                <!-- Title Slide -->
+	        <section data-background-image="img/ann.gif" data-background-opacity=".4">
+	            <h4>Introduction to Topological Data Analysis</h4>
+	            <small>Fabiana Ferracina (Washington State University)</small>
+	        </section>
+                <!-- Intro to TDA -->
+                <section>
+                    <section>
+	                <h4>What's TDA?</h4>
+                        <div class="row">
+                            <div class="column left">
+                                <img src="img/klein.gif" width="250px">
+                                <small><a href="https://www.laetusinpraesens.org/docs20s/dyna12.php">source</a></small>
+                            </div>
+                            <div class="column right">
+                                <ul>
+	                            <li class="fragment">A subfield of algebraic topology that has found applications in many disciplines outside math.</li>
+	                            <li class="fragment">Based on the idea that data are sampled from an underlying manifold so we can study some algebraic invariants of that space.</li>
+	                            <li class="fragment">Important algebraic invariant class are homology groups, which arise from combinatorial representations of the manifold.</li>
+	                        </ul>
+                            </div>
+                        </div>
+	            </section>
+                </section>
+                <!-- Simplicial Complexes -->
+                <section>
+                    <section data-background-image="img/bgstatic.jpeg" data-background-opacity=".3">
+	                <h4>Simplicial Complexes</h4>
+                        <ul>
+	                    <li class="fragment">In Euclidean space, a $k$-simplex is the $k$-dimensional convex hull of $k+1$ affinely independent points.</li>
+	                    <li class="fragment">A simplicial complex is a collection of simplices that are closed under intersection. We can model any topological manifold $\mathbb{X}$ using simplicial complexes.</li>
+	                    <li class="fragment">The $k$th homology group of $\mathbb{X}$, $H_k(\mathbb{X})$, contains elements that are $k$-cycles but not $k$-boundaries. </li>
+                            <li class="fragment">The dimension of $H_k(\mathbb{X})$ is the number of $k$ dimensional holes in $\mathbb{X}$ and is called the $k$th Betti number. </li>
+	                </ul>
+	            </section>
+                    <section data-background-image="img/simplebg.gif" data-background-opacity=".4">
+                        <h4>Examples</h4>
+                        <p><img src="img/simplices.pbm" width="550px">
+                            <br><img src="img/betti.pbm" width="550px">
+                            <br><small><a href="https://www.mdpi.com/2504-2289/2/4/33/htm">source</a></small>
+                        </p>
+                    </section>
+                </section>
+                <!-- Data and Homology -->
+                <section>
+                    <section data-background-image="img/points.jpeg" data-background-opacity=".3">
+	                <h4>Point cloud</h4>
+                        <iframe data-src="https://sauln.github.io/blog/nerve-playground/"
+                                data-preload width="700px" height="500px"></iframe>
+                        <br><small><a href="https://sauln.github.io/blog/nerve-playground/">source</a></small>
+	            </section>
+                     <section data-background-image="img/ann.gif" data-background-opacity=".4">
+                        <h4>Filtration</h4>
+                        <p>As we increase the radii of the balls, we see that holes appear and disappear. <span class="fragment">Also we note that each prior simplicial complex corresponding to smaller radii is a subcomplex of the new simplicial complex corresponding to the larger radii.</span></p>
+                        <p class="fragment">A sequence of simplicial complexes linked by inclusion maps is called a filtration.</p>
+                        <p class ="fragment">Thus, we can keep track of the creation and destruction of topological features of different rank for each complex in the filtration.</p>
+                    </section>
+                    <section>
+                        <h4>Do we always convert data to a point cloud then?</h4>
+                        <ul>
+                            <li class="fragment">No, there are different filtrations that can be appropriate for other types of data.</li>
+                            <li class="fragment">For example, a nested family of sublevel-sets $f^{-1}((-\infty, \alpha])$ for $\alpha = -\infty$ to $\infty$.</li>
+                            <li class="fragment">So we can compute the birth and death connected components and/or holes for filtrations on our data set...</li>
+                        </ul>
+                    </section>
+                </section>
+                <!-- Persistent Homology -->
+                <section>
+                    <section data-transition="fade-in fade-out" data-background-image="img/ph.gif" data-background-opacity=".4">
+	                <h4>Persistent Homology and Diagrams</h4>
+                        <small>For filtered complexes we have that all components are born at the same time. As a younger component meets an older component, the younger one is marked as dead and the two components merge. Note below we also record the birth and death of a 1-d homology group:
+                            <br> <img src="img/filtcomp.gif" width="600px">
+                            <br> <a href="https://towardsdatascience.com/persistent-homology-with-examples-1974d4b9c3d0">source</a></small>
+	            </section>
+                    <section data-transition="fade-in fade-out">
+                        <h4>Persistent Homology and Diagrams</h4>
+                        <small>For a single variate function, such as the signal below, we can track and encode the evolution of connected components (0-d homology) of its sublevel-sets:
+                            <br> <img src="img/signalpd.gif" width="600px">
+                            <br> <a href="https://towardsdatascience.com/persistent-homology-with-examples-1974d4b9c3d0">source</a></small>
+                    </section>
+                    <section data-transition="fade-in" data-background-image="img/topo.jpeg" data-background-opacity=".4">
+                        <h4>Persistent Homology and Diagrams</h4>
+                        <small>Note that we track the components for each $f^{-1}((-\infty, \alpha])$ where  $\alpha \in (-\infty, \infty)$. Below we see that components are born at local minima and die at local maxima:
+                            <br> <img src="img/funfilter.png" width="600px">
+                            <br><a href="https://geometrica.saclay.inria.fr/team/Fred.Chazal/Barcelona2016/slides/PersistenceForTDA.pdf">source</a></small>
+                    </section>
+                </section>
+                <!-- Learn More -->
+                    <section data-transition="fade-in fade-out" data-background-image="" data-background-opacity=".3">
+	                <h4>TDA is a useful tool for mathematician and statisticians!</h4>
+                        <p><i>Learn more!</i></p>
+                        <ul>
+                            <li>Edelsbrunner and Harer - <i>Computational Topology, An Introduction</i> (book)</li>
+                            <li>Carlsson and Vejdemo-Johansson - <i>Topological Data Analysis with Applications</i> (book)</li>
+                            <li>Serrano et al. (2019) - <u>Simplicial degree in complex networks. Applications of Topological Data Analysis to Network Science</u></li>
+                        </ul>
+	            </section>
+                <!-- *********************** END *************************** -->
+            </div>
+        </div>
+
+        <script src="lib/js/head.min.js"></script>
+        <script src="js/reveal.js"></script>
+
+        <script>
+         // More info about config & dependencies:
+         // - https://github.com/hakimel/reveal.js#configuration
+         // - https://github.com/hakimel/reveal.js#dependencies
+         Reveal.initialize({
+             autoPlayMedia: true,
+             math: {
+                 mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js',
+                 config: 'TeX-AMS_HTML-full'  // See http://docs.mathjax.org/en/latest/config-files.html
+             },
+             dependencies: [
+                 { src: 'plugin/markdown/marked.js' },
+                 { src: 'plugin/markdown/markdown.js' },
+                 { src: 'plugin/notes/notes.js', async: true },
+                 { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+                 { src: 'plugin/math/math.js', async: true }
+             ]
+         });
+        </script>
+    </body>
+</html>
